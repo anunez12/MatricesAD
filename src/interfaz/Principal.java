@@ -69,11 +69,23 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 0, 51));
         jLabel2.setText("Filas");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 30, -1));
+
+        txtFilas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtFilasKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtFilas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 60, -1));
 
         jLabel3.setFont(new java.awt.Font("Tunga", 2, 14)); // NOI18N
         jLabel3.setText("Columnas");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, -1));
+
+        txtColumnas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtColumnasKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtColumnas, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 60, -1));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, 100));
@@ -332,6 +344,22 @@ public class Principal extends javax.swing.JFrame {
     private void cmdSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSalirActionPerformed
      System.exit(0);
     }//GEN-LAST:event_cmdSalirActionPerformed
+
+    private void txtFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilasKeyTyped
+        char c=evt.getKeyChar(); 
+       if(Character.isLetter(c)||Character.isSpaceChar(c)||!Character.isDigit(c)){ 
+         getToolkit(); 
+        evt.consume();
+       }
+    }//GEN-LAST:event_txtFilasKeyTyped
+
+    private void txtColumnasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColumnasKeyTyped
+        char c=evt.getKeyChar(); 
+       if(Character.isLetter(c)||Character.isSpaceChar(c)||!Character.isDigit(c)){ 
+         getToolkit(); 
+        evt.consume();      
+       }            
+    }//GEN-LAST:event_txtColumnasKeyTyped
 
     /**
      * @param args the command line arguments

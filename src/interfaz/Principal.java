@@ -182,6 +182,8 @@ public class Principal extends javax.swing.JFrame {
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtResultado.setEditable(false);
+        txtResultado.setFont(new java.awt.Font("Tw Cen MT", 2, 18)); // NOI18N
+        txtResultado.setForeground(new java.awt.Color(255, 153, 0));
         jPanel4.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 430, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 460, 100));
@@ -358,7 +360,7 @@ public class Principal extends javax.swing.JFrame {
        if(Character.isLetter(c)||Character.isSpaceChar(c)||!Character.isDigit(c)){ 
          getToolkit(); 
         evt.consume();      
-       }            
+       }         
     }//GEN-LAST:event_txtColumnasKeyTyped
 
     /**

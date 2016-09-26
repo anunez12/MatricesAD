@@ -70,6 +70,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel2.setText("Filas");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 30, -1));
 
+        txtFilas.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        txtFilas.setForeground(new java.awt.Color(0, 153, 153));
         txtFilas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtFilasKeyTyped(evt);
@@ -81,6 +83,8 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setText("Columnas");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 60, -1));
 
+        txtColumnas.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        txtColumnas.setForeground(new java.awt.Color(204, 0, 0));
         txtColumnas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtColumnasKeyTyped(evt);
@@ -219,7 +223,7 @@ public class Principal extends javax.swing.JFrame {
        tm2=(DefaultTableModel)tblTablaResultado.getModel(); 
        
        tm.setRowCount(0); 
-       tm.setColumnCount(0); 
+       tm.setColumnCount(0);    
        
        tm2.setRowCount(0); 
        tm2.setColumnCount(0);

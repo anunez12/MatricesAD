@@ -3,11 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package interfaz;
 
 import javax.swing.table.DefaultTableModel;
-
+import clases.Helper;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+               
 /**
  *
  * @author anunez12
@@ -19,6 +21,11 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        JButton botonesHabilitar[] = {cmdCrear, cmdBorrar};
+        JButton botonesDesabilitar[] = {cmdManual, cmdAuto, cmdOperacion};
+
+        Helper.habilitarBotones(botonesHabilitar);
+        Helper.deshabilitarBotones(botonesDesabilitar);
     }
 
     /**
@@ -111,6 +118,11 @@ public class Principal extends javax.swing.JFrame {
         cmdManual.setFont(new java.awt.Font("Tw Cen MT", 2, 18)); // NOI18N
         cmdManual.setForeground(new java.awt.Color(0, 102, 153));
         cmdManual.setText("Manual");
+        cmdManual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdManualActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 110, -1));
 
         cmdAuto.setFont(new java.awt.Font("Tw Cen MT", 2, 18)); // NOI18N
@@ -208,164 +220,161 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
-      int numcolumnas,numfilas;                               
-      numcolumnas=tblTablaInicial.getColumnCount(); 
-      numfilas=tblTablaInicial.getRowCount(); 
-      DefaultTableModel tm,tm2;
-       txtFilas.setText(""); 
-       txtColumnas.setText(""); 
-       txtFilas.requestFocusInWindow();  
-       cmbOperaciones.setSelectedIndex(0); 
-       txtResultado.setText(""); 
-       tblTablaInicial.getModel(); 
-       
-       tm=(DefaultTableModel)tblTablaInicial.getModel(); 
-       tm2=(DefaultTableModel)tblTablaResultado.getModel(); 
-       
-       tm.setRowCount(0); 
-       tm.setColumnCount(0);    
-       
-       tm2.setRowCount(0); 
-       tm2.setColumnCount(0);
-       /* for (int i = 0; i <numfilas; i++) { 
-            
-            for (int j = 0; j <numcolumnas; j++) {
-              tblTablaInicial.setValueAt("",i,j);
-              tblTablaResultado.setValueAt("", i,j);
-                
-            }
-          
-            
-        }*/
-      
+        txtFilas.setText("");
+        txtColumnas.setText("");
+        txtFilas.requestFocusInWindow();
+        cmbOperaciones.setSelectedIndex(0);
+        txtResultado.setText("");
+
+        Helper.porDefectoTabla(tblTablaInicial);
+        Helper.porDefectoTabla(tblTablaResultado);
+
+        JButton botonesHabilitar[] = {cmdCrear, cmdBorrar};
+        JButton botonesDesabilitar[] = {cmdManual, cmdAuto, cmdOperacion};
+
+        Helper.habilitarBotones(botonesHabilitar);
+        Helper.deshabilitarBotones(botonesDesabilitar);
+
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
-       int numfilas,numcolumnas; 
-       
-       DefaultTableModel tm,tm2;
-       numfilas=Integer.parseInt(txtFilas.getText()); 
-       numcolumnas=Integer.parseInt(txtColumnas.getText());   
-       
-       tm=(DefaultTableModel)tblTablaInicial.getModel(); 
-       tm2=(DefaultTableModel)tblTablaResultado.getModel(); 
-       
-       tm.setRowCount(numfilas); 
-       tm.setColumnCount(numcolumnas); 
-       
-       tm2.setRowCount(numfilas); 
-       tm2.setColumnCount(numcolumnas);
-       
+        int numfilas, numcolumnas;
+        DefaultTableModel tm, tm2;
+
+        numfilas = Integer.parseInt(txtFilas.getText());
+        numcolumnas = Integer.parseInt(txtColumnas.getText());
+
+        tm = (DefaultTableModel) tblTablaInicial.getModel();
+        tm2 = (DefaultTableModel) tblTablaResultado.getModel();
+
+        tm.setRowCount(numfilas);
+        tm.setColumnCount(numcolumnas);
+
+        tm2.setRowCount(numfilas);
+        tm2.setColumnCount(numcolumnas);
+
+        JButton botonesHabilitar[] = {cmdManual, cmdAuto, cmdBorrar};
+        JButton botonesDesabilitar[] = {cmdCrear, cmdOperacion};
+
+        Helper.habilitarBotones(botonesHabilitar);
+        Helper.deshabilitarBotones(botonesDesabilitar);
+
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void cmdAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAutoActionPerformed
-     int numfilas,numcolumnas,n; 
-     
-     numcolumnas=tblTablaInicial.getColumnCount(); 
-     numfilas=tblTablaInicial.getRowCount(); 
-     
-        for (int i = 0; i<numfilas; i++) {
-           
-            
-        
-     
-        for (int j = 0; j <numcolumnas; j++) { 
-           n=(int)(Math.random()* 50 + 1);
-           tblTablaInicial.setValueAt(n, i, j);
-            
-        } 
-        
-        } 
+        int numfilas, numcolumnas, n;
+
+        numcolumnas = tblTablaInicial.getColumnCount();
+        numfilas = tblTablaInicial.getRowCount();
+
+        for (int i = 0; i < numfilas; i++) {
+
+            for (int j = 0; j < numcolumnas; j++) {
+                n = (int) (Math.random() * 50 + 1);
+                tblTablaInicial.setValueAt(n, i, j);
+
+            }
+
+        }
+        JButton botonesHabilitar[] = {cmdOperacion, cmdBorrar};
+        JButton botonesDesahibilitar[] = {cmdCrear, cmdManual, cmdAuto};
+
+        Helper.habilitarBotones(botonesHabilitar);
+        Helper.deshabilitarBotones(botonesDesahibilitar);
     }//GEN-LAST:event_cmdAutoActionPerformed
 
     private void cmdOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdOperacionActionPerformed
-       int operacion,numfilas,numcolumnas,aux,cont=0; 
-       
-       operacion=cmbOperaciones.getSelectedIndex(); 
-       numfilas=tblTablaInicial.getRowCount(); 
-       numcolumnas=tblTablaInicial.getColumnCount();
-       switch(operacion){ 
-           case 0: 
-               for (int i = 0; i <numfilas; i++) { 
-                   for (int j = 0; j <numcolumnas; j++) { 
-                      aux=(int)tblTablaInicial.getValueAt(i,j); 
-                      if(aux %2 ==0){ 
-                       cont=cont +1;
-                       
-                      }
-                   }
-               } 
-               txtResultado.setText("La cantidad de numeros pares es: "+cont);
-               break; 
-                case 1: 
-               for (int i = 0; i <numfilas; i++) { 
-                   for (int j = 0; j <numcolumnas; j++) { 
-                      aux=(int)tblTablaInicial.getValueAt(i,j); 
-                      if(aux %2 ==0){ 
-                       tblTablaResultado.setValueAt(aux, i,j);
-                   
-                                                                                                                       
-                   
-               
-       } 
-                   } 
-               } 
-             break; 
-                case 2: 
-               for (int i = 0; i <numfilas; i++) { 
-                   for (int j = 0; j <numcolumnas; j++) { 
-                      aux=(int)tblTablaInicial.getValueAt(i,j); 
-                      if(i ==0 || i==numfilas-1 || j==0){ 
-                       tblTablaResultado.setValueAt(aux, i,j);
-       } 
-                   } 
-               } 
-              break; 
-                case 3: 
-                for (int i = 0; i <numfilas; i++) { 
-                   for (int j = 0; j <numcolumnas; j++) { 
-                      aux=(int)tblTablaInicial.getValueAt(i,j); 
-                      if(i==j){ 
-                       tblTablaResultado.setValueAt(aux, i,j);
-       } 
-                   } 
-                } 
-              break; 
-                case 4: 
-                  for (int i = 0; i <numfilas; i++) { 
-                   for (int j = 0; j <numcolumnas; j++) { 
-                      aux=(int)tblTablaInicial.getValueAt(i,j); 
-                      if(j==0 || j==numcolumnas-1 || i==(numfilas-1)/2){ 
-                       tblTablaResultado.setValueAt(aux, i,j);
-                    
-                    
-       } 
-                   } 
-                  } 
-               break;
-       } 
-       
+        int operacion, cantidadnumerospares;
+
+        operacion = cmbOperaciones.getSelectedIndex();
+        Helper.limpiadoTabla(tblTablaResultado);
+
+        switch (operacion) {
+            case 0:
+                cantidadnumerospares = Helper.cantidadNumerosPares(tblTablaInicial);
+                txtResultado.setText("La cantidad de numeros pares es: " + cantidadnumerospares);
+                break;
+            case 1:
+                Helper.numerospares(tblTablaInicial, tblTablaResultado);
+                break;
+
+            case 2:
+                Helper.letraC(tblTablaInicial, tblTablaResultado);
+                break;
+
+            case 3:
+                Helper.diagonalPrincipal(tblTablaInicial, tblTablaResultado);
+                break;
+            case 4:
+                Helper.letraH(tblTablaInicial, tblTablaResultado);
+                break;
+        }
+        JButton botonesHabilitar[] = {cmdOperacion, cmdBorrar};
+        JButton botonesDesabilitar[] = {cmdManual, cmdAuto};
+
+        Helper.habilitarBotones(botonesHabilitar);
+        Helper.deshabilitarBotones(botonesDesabilitar);
+
     }//GEN-LAST:event_cmdOperacionActionPerformed
 
     private void cmdSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSalirActionPerformed
-     System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_cmdSalirActionPerformed
 
     private void txtFilasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtFilasKeyTyped
-        char c=evt.getKeyChar(); 
-       if(Character.isLetter(c)||Character.isSpaceChar(c)||!Character.isDigit(c)){ 
-         getToolkit(); 
-        evt.consume();
-       }
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c) || Character.isSpaceChar(c) || !Character.isDigit(c)) {
+            getToolkit();
+            evt.consume();
+        }
     }//GEN-LAST:event_txtFilasKeyTyped
 
     private void txtColumnasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtColumnasKeyTyped
-        char c=evt.getKeyChar(); 
-       if(Character.isLetter(c)||Character.isSpaceChar(c)||!Character.isDigit(c)){ 
-         getToolkit(); 
-        evt.consume();      
-       }         
+        char c = evt.getKeyChar();
+        if (Character.isLetter(c) || Character.isSpaceChar(c) || !Character.isDigit(c)) {
+            getToolkit();
+            evt.consume();
+        }
     }//GEN-LAST:event_txtColumnasKeyTyped
+
+    private void cmdManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdManualActionPerformed
+        int numfilas, numcolumnas, n, sw, res;
+
+        numcolumnas = tblTablaInicial.getColumnCount();
+        numfilas = tblTablaInicial.getRowCount();
+
+        for (int i = 0; i < numfilas; i++) {
+            for (int j = 0; j < numcolumnas; j++) {
+                do {
+                    sw = 1;
+                    try {
+                        n = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el elmento en la posición [" + i + "]" + "[" + j + "]").trim());
+                        tblTablaInicial.setValueAt(n, i, j);
+                    } catch (NumberFormatException e) {
+                        Helper.mensaje(this, "Digite un número válido", 3);
+                        sw = 0;
+                    } catch (NullPointerException e) {
+                        res = JOptionPane.showConfirmDialog(this, "¿Seguro que desea salir?", "Salir", JOptionPane.YES_NO_OPTION);
+                        if (res == 0) {
+                            sw = 1;
+                            i = numfilas;
+                            j = numcolumnas;
+
+                            Helper.porDefectoTabla(tblTablaInicial);
+                            Helper.porDefectoTabla(tblTablaResultado);
+                        } else {
+                            sw = 0;
+                        }
+                    }
+                } while (sw == 0);
+            }
+            JButton botonesHabilitar[] = {cmdOperacion, cmdBorrar};
+            JButton botonesDesabiltar[] = {cmdCrear, cmdManual, cmdAuto};
+
+            Helper.habilitarBotones(botonesHabilitar);
+            Helper.deshabilitarBotones(botonesDesabiltar);
+        }
+    }//GEN-LAST:event_cmdManualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -426,7 +435,3 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txtResultado;
     // End of variables declaration//GEN-END:variables
 }
-
-
-
-

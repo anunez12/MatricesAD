@@ -160,4 +160,84 @@ public class Helper {
 
     }
 
+    public static String recorridoHaciaArriba(int[][] m, int j) {
+        int numfilas = m.length;
+        String aux = "";
+
+        for (int i = numfilas - 1; i >= 0; i--) {
+            aux = aux + m[i][j] + ",";
+
+        }
+        return aux;
+
+    }
+
+    public static String recorridoHaciaAbajo(int[][] m, int j) {
+        int numfilas = m.length;
+        String aux = "";
+
+        for (int i = 0; i < numfilas; i++) {
+            aux = aux + m[i][j] + ",";
+
+        }
+        return aux;
+    }
+
+    public static String recorridoUno(JTable tabla1) {
+
+        int[][] m = exportarDatos(tabla1);
+        int numcolumnas = m[0].length;
+        String aux = "";
+
+        for (int j = 0; j < numcolumnas; j++) {
+            if (j % 2 == 0) {
+                aux = aux + Helper.recorridoHaciaArriba(m, j);
+            } else {
+                aux = aux + Helper.recorridoHaciaAbajo(m, j);
+            }
+
+        }
+        aux = aux.substring(0, aux.length() - 2) + ".";
+        return aux;
+    }
+
+    public static String recorrridoHaciaIzquierda(int[][] m, int i) {
+        int numcolumnas = m[0].length;
+        String aux = "";
+
+        for (int j = numcolumnas - 1; j >= 0; j--) {
+            aux = aux + m[i][j] + ",";
+
+        }
+        return aux;
+    }
+
+    public static String recorrridoHaciaDerecha(int[][] m, int i) {
+        int numcolumnas = m[0].length;
+        String aux = "";
+
+        for (int j = 0; j < numcolumnas; j++) {
+            aux = aux + m[i][j] + ",";
+
+        }
+        return aux;
+    }
+
+    public static String recorridoDos(JTable tabla1) {
+        int[][] m = exportarDatos(tabla1);
+        int numfilas = m[0].length;
+        String aux = "";
+
+        for (int i = 0; i < numfilas; i++) {                    
+            if (i % 2 == 0) {
+                aux = aux + Helper.recorrridoHaciaIzquierda(m, i);
+            } else {
+                aux = aux + Helper.recorrridoHaciaDerecha(m, i);
+            }
+
+        }
+        aux = aux.substring(0, aux.length() - 2) + ".";
+        return aux;
+
+    }
 }

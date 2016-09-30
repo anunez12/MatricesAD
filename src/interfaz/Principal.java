@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 import clases.Helper;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-               
+
 /**
  *
  * @author anunez12
@@ -57,7 +57,8 @@ public class Principal extends javax.swing.JFrame {
         tblTablaResultado = new javax.swing.JTable();
         cmbOperaciones = new javax.swing.JComboBox();
         jPanel4 = new javax.swing.JPanel();
-        txtResultado = new javax.swing.JTextField();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtResultadoR = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -174,6 +175,7 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
+        tblTablaInicial.setEnabled(false);
         jScrollPane1.setViewportView(tblTablaInicial);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 460, 140));
@@ -186,21 +188,26 @@ public class Principal extends javax.swing.JFrame {
 
             }
         ));
+        tblTablaResultado.setEnabled(false);
         jScrollPane2.setViewportView(tblTablaResultado);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 460, 140));
 
-        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cant.Num.Pares ", "Numeros Pares ", "Letra C ", "Diagonal Principal", "Letra H" }));
+        cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Cant.Num.Pares ", "Numeros Pares ", "Letra C ", "Diagonal Principal", "Letra H ", "Recorrido Uno ", "Recorrido Dos" }));
         jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 200, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtResultado.setEditable(false);
-        txtResultado.setFont(new java.awt.Font("Tw Cen MT", 2, 18)); // NOI18N
-        txtResultado.setForeground(new java.awt.Color(255, 153, 0));
-        jPanel4.add(txtResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 430, -1));
+        txtResultadoR.setEditable(false);
+        txtResultadoR.setColumns(20);
+        txtResultadoR.setFont(new java.awt.Font("Monotype Corsiva", 2, 14)); // NOI18N
+        txtResultadoR.setForeground(new java.awt.Color(102, 0, 51));
+        txtResultadoR.setRows(5);
+        jScrollPane3.setViewportView(txtResultadoR);
+
+        jPanel4.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 20, 450, 70));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 400, 460, 100));
 
@@ -224,7 +231,7 @@ public class Principal extends javax.swing.JFrame {
         txtColumnas.setText("");
         txtFilas.requestFocusInWindow();
         cmbOperaciones.setSelectedIndex(0);
-        txtResultado.setText("");
+        txtResultadoR.setText("");
 
         Helper.porDefectoTabla(tblTablaInicial);
         Helper.porDefectoTabla(tblTablaResultado);
@@ -292,7 +299,7 @@ public class Principal extends javax.swing.JFrame {
         switch (operacion) {
             case 0:
                 cantidadnumerospares = Helper.cantidadNumerosPares(tblTablaInicial);
-                txtResultado.setText("La cantidad de numeros pares es: " + cantidadnumerospares);
+                txtResultadoR.setText("La cantidad de numeros pares es: " + cantidadnumerospares);
                 break;
             case 1:
                 Helper.numerospares(tblTablaInicial, tblTablaResultado);
@@ -307,7 +314,12 @@ public class Principal extends javax.swing.JFrame {
                 break;
             case 4:
                 Helper.letraH(tblTablaInicial, tblTablaResultado);
+                break;               
+            case 5:
+                txtResultadoR.setText(Helper.recorridoUno(tblTablaInicial));
                 break;
+            case 6:
+                txtResultadoR.setText(Helper.recorridoDos(tblTablaInicial));
         }
         JButton botonesHabilitar[] = {cmdOperacion, cmdBorrar};
         JButton botonesDesabilitar[] = {cmdManual, cmdAuto};
@@ -428,10 +440,11 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tblTablaInicial;
     private javax.swing.JTable tblTablaResultado;
     private javax.swing.JTextField txtColumnas;
     private javax.swing.JTextField txtFilas;
-    private javax.swing.JTextField txtResultado;
+    private javax.swing.JTextArea txtResultadoR;
     // End of variables declaration//GEN-END:variables
 }

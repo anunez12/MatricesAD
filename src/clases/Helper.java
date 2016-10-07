@@ -212,12 +212,48 @@ public class Helper {
         return aux;
     }
 
-    public static String recorrridoHaciaDerecha(int[][] m, int i) {
-        int numcolumnas = m[0].length;
+    public static String recorridoDiagonalPrincipalHaciaAbajo(int[][] m, int i) {
+        int numfilas = m.length;
         String aux = "";
 
-        for (int j = 0; j < numcolumnas; j++) {
-            aux = aux + m[i][j] + ",";
+        for (int j = 0; i < numfilas; j++) {
+            aux = aux + m[i][i] + " , ";
+
+        }
+        return aux;
+    }
+
+    public static String recorridoDiagonalPrincipalHaciaAba(int[][] m, int in, int fin) {
+
+        String aux = "";
+
+        for (int i = in; i < fin; i++) {
+            aux = aux + m[i][i] + " , ";
+
+        }
+        return aux;
+
+    }
+
+    public static String recorridoDiagonalPrinipalHaciaArriba(int[][] m) {
+        int numfilas = m.length;
+
+        String aux = "";
+
+        for (int i = numfilas - 1; i > 0; i--) {
+            aux = aux + m[i][i] + " , ";
+
+        }
+        return aux;
+    }
+
+    public static String recorridoDiagonalPrinipalHaciaArribaa(int[][] m, int in, int fin) {
+        int numfilas = m.length;
+
+        String aux = "";
+
+        for (int i = in; i >= fin; i--) {
+            aux = aux + m[i][i] + " , ";
 
         }
         return aux;
@@ -228,11 +264,11 @@ public class Helper {
         int numfilas = m[0].length;
         String aux = "";
 
-        for (int i = 0; i < numfilas; i++) {                    
+        for (int i = 0; i < numfilas; i++) {
             if (i % 2 == 0) {
                 aux = aux + Helper.recorrridoHaciaIzquierda(m, i);
             } else {
-                aux = aux + Helper.recorrridoHaciaDerecha(m, i);
+
             }
 
         }
@@ -240,4 +276,71 @@ public class Helper {
         return aux;
 
     }
+
+    public static String Mostrar(int[][] m) {
+        String aux = "";
+
+        for (int i = 0; i < m.length; i++) {
+            for (int j = 0; j < m[0].length; j++) {
+                aux = aux + m[i][j] + "  ";
+
+            }
+            aux = aux + "\n";
+        }
+        return aux;
+    }
+
+    public static String diagonalSecundariaHaciaAbajo(int[][] m) {
+        int numfilas = m.length;
+        int numcolumnas = m[0].length;
+
+        String aux = "";
+
+        for (int i = 0; i < numfilas; i++) {
+            aux = aux + m[i][numcolumnas - 1 - i] + ", ";
+
+        }
+        return aux;
+    }
+
+    public static String diagonalSecundariaHaciaAbajo(int[][] m, int in, int fin) {
+        int numfilas = m.length;
+        int numcolumnas = m[0].length;
+
+        String aux = "";
+
+        for (int i = in; i < fin; i++) {
+            aux = aux + m[i][numcolumnas - 1 - i] + ", ";
+
+        }
+        return aux;
+    }
+
+    public static String diagonalSecundariaHaciaArriba(int[][] m) {
+        int numfilas = m.length;
+        int numcolumnas = m[0].length;
+
+        String aux = "";
+
+        for (int i = numfilas - 1; i >= 0; i--) {
+            aux = aux + m[i][numcolumnas - 1 - i] + ", ";
+
+        }
+        return aux;
+    }
+
+    public static String diagonalSecundariaHaciaArriba(int[][] m, int in, int fin) {
+        int numfilas = m.length;
+        int numcolumnas = m[0].length;
+
+        String aux = "";
+
+        for (int i = in; i < fin; i--) {
+            aux = aux + m[i][numcolumnas - 1 - i] + ", ";
+
+        }
+        return aux;
+    } 
+    
+                      
 }
